@@ -1,4 +1,6 @@
 import React from 'react'
+import { Profile } from './Pages';
+
 
 const MenuBar = (props) => {
 
@@ -13,21 +15,61 @@ const MenuBar = (props) => {
 
   */
 
+  let profAct = "item"
+  let photoAct = "item"
+  let cocktailAct = "item"
+  let pokeAct = "item"
+
+  let setButtonActs = () => {
+    let activeNow = props.active
+    if (activeNow === "profile") {
+      profAct = "item active"
+    } else if (activeNow === "photos") {
+      photoAct = "item active"
+    } else if (activeNow === "cocktails") {
+      cocktailAct = "item active"
+    } else if (activeNow === "pokemon") {
+      pokeAct = "item active"
+    }
+  }
+
+  setButtonActs()
+
+  // return (
+  //   <div onClick={props.handleClick} className="ui four item menu">
+  //     <a className={props.active === "profile" ? "item active" : "item"} id="profile">
+  //       <i className="user large icon" id="profile"/>
+  //     </a>
+
+  //     <a className={props.active === "photos" ? "item active" : "item"} id="photo">
+  //       <i className="photo large icon" id="photo"/>
+  //     </a>
+
+  //     <a className={props.active === "cocktails" ? "item active" : "item"} id="cocktail">
+  //       <i className="cocktail large icon" id="cocktail"/>
+  //     </a>
+
+  //     <a className={props.active === "pokemon" ? "item active" : "item"} id="pokemon"> 
+  //       <i className=" themeisle large icon" id="pokemon"/>
+  //     </a>
+  //   </div>
+  // )
+
   return (
-    <div className="ui four item menu">
-      <a className="item active" id="profile">
+    <div onClick={props.handleClick} className="ui four item menu">
+      <a className={profAct} id="profile">
         <i className="user large icon" id="profile"/>
       </a>
 
-      <a className="item" id="photo">
+      <a className={photoAct} id="photo">
         <i className="photo large icon" id="photo"/>
       </a>
 
-      <a className="item" id="cocktail">
+      <a className={cocktailAct} id="cocktail">
         <i className="cocktail large icon" id="cocktail"/>
       </a>
 
-      <a className="item" id="pokemon"> 
+      <a className={pokeAct} id="pokemon"> 
         <i className=" themeisle large icon" id="pokemon"/>
       </a>
     </div>
