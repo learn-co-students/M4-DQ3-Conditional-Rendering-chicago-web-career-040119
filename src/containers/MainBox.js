@@ -4,6 +4,42 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+  constructor() {
+    super()
+    this.state = {
+      activeMenu: Profile(),
+      active: "profile"
+    }
+  }
+
+  renderPage = (event) => {
+    if (event.target.id === "profile"){
+      this.setState({
+        activeMenu: Profile(),
+        active: event.target.id
+      })
+    }
+    if (event.target.id === "photo"){
+      this.setState({
+        activeMenu: Photos(),
+        active: event.target.id
+      })
+    }
+    if (event.target.id === "cocktail"){
+      this.setState({
+        activeMenu: Cocktails(),
+        active: event.target.id
+      })
+    }
+    if (event.target.id === "pokemon"){
+      this.setState({
+        activeMenu: <Pokemon />,
+        active: event.target.id
+      })
+    }
+  }
+
+
 
   render() {
 
@@ -13,11 +49,12 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+    const detailsToDisplay = <div>{this.state.activeMenu}</div>
+
 
     return (
       <div>
-        <MenuBar />
+        <MenuBar active={this.state.active} renderPage={this.renderPage}/>
         {detailsToDisplay}
       </div>
     )
