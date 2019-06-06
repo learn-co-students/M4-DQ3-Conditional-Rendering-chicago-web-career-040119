@@ -3,7 +3,38 @@ import MenuBar from '../components/MenuBar.js'
 import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      view: Profile(),
+      active: "profile"
+    }
+  }
 
+  getButtonVal = event => {
+    console.log(event.target)
+    if (event.target.id === "profile") {
+      this.setState({
+        view: Profile(),
+        active: "profile"
+      })
+    } else if (event.target.id === "photo") {
+      this.setState({
+        view: Photos(),
+        active: "photos"
+      })
+    } else if (event.target.id === "cocktail") {
+      this.setState({
+        view: Cocktails(),
+        active: "cocktails"
+      })
+    } else if (event.target.id === "pokemon") {
+      this.setState({
+        view: <Pokemon />,
+        active: "pokemon"
+      })
+    } 
+  }
 
   render() {
 
@@ -13,11 +44,12 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+    let detailsToDisplay = <div>{this.state.view}</div>
 
     return (
       <div>
-        <MenuBar />
+        <MenuBar active={this.state.active} handleClick={this.getButtonVal} />
+        Details to display below here
         {detailsToDisplay}
       </div>
     )
